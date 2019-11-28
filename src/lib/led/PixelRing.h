@@ -28,7 +28,7 @@ public:
 
     void process(SceneMode scene_mode = SceneMode::None);
 
-    //! Increments the brightemess by maximum +/-20 %
+    //! Increments the brightness by maximum +/-20 %
     //! \param increment percentage to in-/decrement
     void incrementBrightness(int8_t increment);
 
@@ -85,7 +85,7 @@ private:
         uint8_t toggle : 1;
     };
 
-    uint32_t overrideColorChannelBrightness(uint8_t color);
+    uint8_t overrideColorChannelBrightness(uint8_t color);
     uint32_t overrideColorBrightness(uint32_t color);
 
     //! Puts the given color on the whole strip wrt. to the current brightness.

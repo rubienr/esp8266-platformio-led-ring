@@ -73,18 +73,18 @@ void PixelRing::maxBrightness()
     brightness = 100;
 }
 
-uint32_t PixelRing::overrideColorChannelBrightness(uint8_t color_value)
+uint8_t PixelRing::overrideColorChannelBrightness(uint8_t color_value)
 {
     uint16_t color = ((uint16_t) brightness_override * (uint16_t) brightness * (uint16_t) color_value) / (uint16_t) 100;
     color = color > 255 ? 255 : color;
-    return static_cast<uint8_t> (color);
+    return static_cast<uint8_t>(color);
 }
 
 uint32_t PixelRing::overrideColorBrightness(uint32_t color)
 {
-    uint8_t r = (color & 0x00ff0000) >> 16;
-    uint8_t g = (color & 0x0000ff00) >> 8;
-    uint8_t b = (color & 0x000000ff);
+    uint8_t r = static_cast<uint8_t>((color & 0x00ff0000) >> 16);
+    uint8_t g = static_cast<uint8_t>((color & 0x0000ff00) >> 8);
+    uint8_t b = static_cast<uint8_t>((color & 0x000000ff));
 
     return Strip::Color(
             overrideColorChannelBrightness(r),
@@ -107,13 +107,13 @@ void PixelRing::theaterChase(uint32_t color, uint16_t wait_ms)
         return;
     time_elapsed = 0;
 
-    static int a = 0, a_max = 10; // outer loop
-    static int b = 0, b_max = 3; // inner loop
+    static uint16_t a = 0, a_max = 10; // outer loop
+    static uint16_t b = 0, b_max = 3; // inner loop
 
     {
         strip.clear();         //   Set all pixels in RAM to 0 (off)
         // 'c' counts up from 'b' to end of strip in steps of 3...
-        for (int c = b; c < strip.numPixels(); c += 3)
+        for (uint16_t c = b; c < strip.numPixels(); c += 3)
         {
             strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'
         }
@@ -142,15 +142,16 @@ void PixelRing::rainbow(uint16_t wait_ms)
     // Color wheel has a range of 65536 but it's OK if we roll over, so
     // just count from 0 to 3*65536. Adding 256 to firstPixelHue each time
     // means we'll make 3*65536/256 = 768 passes through this outer process:
-    static int firstPixelHue = 0, firstPixelHue_max = 3 * 65536;
+    static uint32_t firstPixelHue = 0, firstPixelHue_max = 3 * 65536;
 
     {
         for (uint16_t i = 0; i < strip.numPixels(); i++)
-        { // For each pixel in strip...
+        {
+            // For each pixel in strip...
             // Offset pixel hue by an amount to make one full revolution of the
             // color wheel (range of 65536) along the length of the strip
             // (strip.numPixels() steps):
-            uint16_t pixelHue = firstPixelHue + (i * 65536L / strip.numPixels());
+            uint16_t pixelHue = static_cast<uint16_t>(firstPixelHue + (i * 65536L / strip.numPixels()));
             // strip.ColorHSV() can take 1 or 3 arguments: a hue (0 to 65535) or
             // optionally add saturation and value (brightness) (each 0 to 255).
             // Here we're using just the single-argument hue variant. The result
@@ -164,7 +165,7 @@ void PixelRing::rainbow(uint16_t wait_ms)
     }
 
     firstPixelHue += 256;
-    if (firstPixelHue >= firstPixelHue_max)
+    if (firstPixelHue > firstPixelHue_max)
         firstPixelHue = 0;
 
 }
@@ -175,8 +176,8 @@ void PixelRing::theaterChaseRainbow(uint16_t wait_ms)
         return;
     time_elapsed = 0;
 
-    static int a = 0, a_max = 30; // outer loop
-    static int b = 0, b_max = 3; // inner loop
+    static uint16_t a = 0, a_max = 30; // outer loop
+    static uint16_t b = 0, b_max = 3; // inner loop
 
     {
         static uint16_t firstPixelHue = 0;     // First pixel starts at red (hue 0)
@@ -187,7 +188,7 @@ void PixelRing::theaterChaseRainbow(uint16_t wait_ms)
             // hue of pixel 'c' is offset by an amount to make one full
             // revolution of the color wheel (range 65536) along the length
             // of the strip (strip.numPixels() steps):
-            uint16_t hue = firstPixelHue + c * 65536 / strip.numPixels();
+            uint16_t hue = static_cast<uint16_t>(firstPixelHue + c * 65536 / strip.numPixels());
             uint32_t color = overrideColorBrightness(Strip::gamma32(Strip::ColorHSV(hue))); // hue -> RGB
             strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'
         }
@@ -264,7 +265,7 @@ void PixelRing::nextScene()
 PixelRing::ArcBasedView::ArcBasedView(Adafruit_NeoPixel &strip) :
         strip(strip),
         begin(0),
-        end(strip.numPixels() - 1),
+        end(static_cast<uint8_t>(strip.numPixels() - 1)),
         pixel_iterator(0),
         toggle(0)
 {}
@@ -316,7 +317,7 @@ void PixelRing::ArcBasedView::incrementArc(int8_t pixels)
 
 void PixelRing::ArcBasedView::incrementArcByOne(bool do_increment)
 {
-    uint8_t increment = do_increment ? 1 : -1;
+    int8_t increment = do_increment ? 1 : -1;
 
     // disallow underflow
     if (!do_increment && begin == end)

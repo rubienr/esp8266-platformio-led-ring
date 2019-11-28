@@ -11,7 +11,7 @@
 #include "../lib/builtin/BuiltIn.h"
 #include "KeyEventHandler.h"
 
-struct Ressources
+struct Resources
 {
     struct EarlyInitializer
     {
