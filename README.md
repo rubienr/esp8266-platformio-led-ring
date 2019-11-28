@@ -53,8 +53,9 @@ corresponds to
 
 # Hardware
 
- + MPR121 touch keyboard
- + Adafruit NeoPixel (or similar RGB LED ring/strip)
++ WEMOS D1 mini
++ MPR121 capacitive touch keyboard
++ Adafruit NeoPixel (or similar RGB LED ring/strip)
  
 ## Wiring
 
