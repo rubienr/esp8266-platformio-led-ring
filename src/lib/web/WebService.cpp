@@ -59,80 +59,163 @@ void WebService::init()
         Serial.println("WebService::on: /status");
 
         String status;
-        status += "<html>";
-        status += "shutdown reason ";
+        status += "<html>"
+                  "  <table>"
+                  "    <tr>"
+                  "      <th>status</th>"
+                  "      <th>value</th>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>shutdown reason</td>"
+                  "      <td>";
         status += ESP.getResetReason().c_str();
-
-        status += "<br/>getVcc() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>VCC [mV]</td>"
+                  "      <td>";
         status += ESP.getVcc();
-
-        status += "getFreeHeap() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>free heap [B]</td>"
+                  "      <td>";
         status += ESP.getFreeHeap();
-
-        status += "<br/>ESP.getMaxFreeBlockSize() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>max. free block size </td>"
+                  "      <td>";
         status += ESP.getMaxFreeBlockSize();
-
-        status += "<br/>ESP.getHeapFragmentation() "; // in %
-        status += ESP.getHeapFragmentation(); // in %
-
-        status += "<br/>ESP.getFreeContStack() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>heap fragmentation [%]</td>"
+                  "      <td>";
+        status += ESP.getHeapFragmentation();
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>free continuous stack [B]</td>"
+                  "      <td>";
         status += ESP.getFreeContStack();
-
-        status += "<br/>ESP.getSdkVersion() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>SDK version</td>"
+                  "      <td>";
         status += ESP.getSdkVersion();
-
-        status += "<br/>ESP.getCoreVersion() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>core version</td>"
+                  "      <td>";
         status += ESP.getCoreVersion();
-
-        status += "<br/>ESP.getFullVersion() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>full version</td>"
+                  "      <td>";
         status += ESP.getFullVersion();
 
-        status += "<br/>ESP.getBootVersion() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>boot loader version</td>"
+                  "      <td>";
         status += ESP.getBootVersion();
 
-        status += "<br/>ESP. getBootMode() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>boot mode</td>"
+                  "      <td>";
         status += ESP.getBootMode();
 
-        status += "<br/>ESP.getCpuFreqMHz() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>CPU frequency [MHz]</td>"
+                  "      <td>";
         status += ESP.getCpuFreqMHz();
-
-        status += "<br/>ESP. getFlashChipId() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip ID</td>"
+                  "      <td>";
         status += ESP.getFlashChipId();
-
-        status += "<br/>ESP. getFlashChipVendorId() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip vendor ID</td>"
+                  "      <td>";
         status += ESP.getFlashChipVendorId();
-
-        status += "<br/>ESP.getFlashChipRealSize() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip real size[B]</td>"
+                  "      <td>";
         status += ESP.getFlashChipRealSize();
-
-        status += "<br/>ESP. getFlashChipSize() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip size [B]</td>"
+                  "      <td>";
         status += ESP.getFlashChipSize();
-
-        status += "<br/>ESP.getFlashChipSpeed() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip speed [Hz]</td>"
+                  "      <td>";
         status += ESP.getFlashChipSpeed();
-
-        status += "<br/>ESP.getFlashChipMode() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip mode</td>"
+                  "      <td>";
         status += ESP.getFlashChipMode();
-
-        status += "<br/>ESP. getFlashChipSizeByChipId() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>flash chip size by chip ID</td>"
+                  "      <td>";
         status += ESP.getFlashChipSizeByChipId();
-
-        status += "<br/>ESP.getSketchSize() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>sketch size [B]</td>"
+                  "      <td>";
         status += ESP.getSketchSize();
-
-        status += "<br/>ESP.getSketchMD5() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>sketch MD5</td>"
+                  "      <td>";
         status += ESP.getSketchMD5();
-
-        status += "<br/>ESP.getFreeSketchSpace() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>free sketch space [B]</td>"
+                  "      <td>";
         status += ESP.getFreeSketchSpace();
 
-        status += "<br/>ESP.getResetReason() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>reset reason</td>"
+                  "      <td>";
         status += ESP.getResetReason();
 
-        status += "<br/>ESP.getResetInfo() ";
+        status += "</td>"
+                  "    </tr>"
+                  "    <tr>"
+                  "      <td>reset info</td>"
+                  "      <td>";
         status += ESP.getResetInfo();
-
-        status += "</html>";
+        status += "</td>"
+                  "    </tr>"
+                  "  <table>"
+                  "</html>";
 
         send(200, "text/html", status);
     });

@@ -106,7 +106,7 @@ private:
     //! 0-100 [%]
     uint8_t brightness{100};
     //! 0-1 (on, off)
-    uint8_t brightness_override{0};
+    uint8_t brightness_override{1};
 
     SceneMode last_scene_mode = {SceneMode::Rainbow};
     //! timer to measure elapsed time in [ms] since set to 0

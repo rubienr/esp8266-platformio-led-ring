@@ -11,6 +11,8 @@
 #include "../lib/builtin/BuiltIn.h"
 #include "KeyEventHandler.h"
 
+ADC_MODE(ADC_VCC);
+
 struct Resources
 {
     struct EarlyInitializer
