@@ -12,10 +12,11 @@ private:
 
 protected:
     ESP8266HTTPUpdateServer updateServer;
-    MDNSResponder& mdns;
+    MDNSResponder &mdns;
 
 public:
     explicit WebService(int16_t port = 80);
+
     void init();
 };
 

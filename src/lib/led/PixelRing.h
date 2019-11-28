@@ -86,6 +86,7 @@ private:
     };
 
     uint8_t overrideColorChannelBrightness(uint8_t color);
+
     uint32_t overrideColorBrightness(uint32_t color);
 
     //! Puts the given color on the whole strip wrt. to the current brightness.

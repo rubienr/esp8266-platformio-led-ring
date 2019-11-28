@@ -8,7 +8,8 @@
 
 struct StandbyOfficer
 {
-    StandbyOfficer(PixelRing &pixel_ring, unsigned long seconds_idle_before_standby = 60, const String &name="scotty") :
+    StandbyOfficer(PixelRing &pixel_ring, unsigned long seconds_idle_before_standby = 60, const String &name = "scotty")
+            :
             seconds_idle_before_standby(seconds_idle_before_standby),
             pixel_ring(pixel_ring),
             name(name)

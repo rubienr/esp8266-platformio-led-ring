@@ -20,5 +20,5 @@ struct KeyEvent
 
     Key key{Key::None};
     Type type{Type::None};
-    uint16_t repeated {0};
+    uint16_t repeated{0};
 };

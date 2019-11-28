@@ -19,8 +19,8 @@ void WebService::init()
     {
         Serial.println("WebService::on: /");
 
-             String info;
-             info += "<html>";
+        String info;
+        info += "<html>";
         info += "  <h1> Firmware ";
         info += ESP.getSketchMD5();
         info += " size  ";
@@ -31,7 +31,7 @@ void WebService::init()
         info += "  <a href=/files>ls</a><br/>";
         info += "  <a href=/reboot>reboot (switch from wifi to normal mode)</a><br/>";
         info += "</html>";
-        send(200, "text/html",info);
+        send(200, "text/html", info);
     });
 
     on("/files", [&]()

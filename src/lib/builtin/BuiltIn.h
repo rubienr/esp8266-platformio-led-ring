@@ -24,4 +24,4 @@ struct BuiltIn
         pinMode(LED_BUILTIN, OUTPUT);
         ledOff();
     }
-} ;
+};

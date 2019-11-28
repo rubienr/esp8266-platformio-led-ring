@@ -30,8 +30,8 @@ struct Resources
     BuiltIn build_in;
     OperatingMode operating_mode;
     PixelRing strip;
-    StandbyOfficer standby_officer_on_long_term{strip, 60*60, "long term"};
-    StandbyOfficer standby_officer_on_lights_off{strip, 20*60, "short term"};
+    StandbyOfficer standby_officer_on_long_term{strip, 60 * 60, "long term"};
+    StandbyOfficer standby_officer_on_lights_off{strip, 20 * 60, "short term"};
     KeyEventHandler event_handler{strip,
                                   operating_mode,
                                   standby_officer_on_long_term,
