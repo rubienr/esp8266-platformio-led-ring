@@ -1,3 +1,8 @@
+src/.pio
+src/.idea
+src/cmake-build-*
+src/CMakeListsPrivate.txt
+
 # Prerequisites
 *.d
 
